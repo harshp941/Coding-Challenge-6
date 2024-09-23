@@ -14,6 +14,7 @@ employee.shifts.forEach(shift => {
     console.log( `Day: ${shift.day}, Hours Worked: ${shift.hours}`)
 });
 }
+//this is to test the function
 employees.forEach(displayEmployeeShifts);
 
 // Task 3 Create a Function to Assign a New Shift
@@ -40,16 +41,19 @@ function calculateTotalHours(employeeName){
     let employee = employees.find(em => em.name === employeeName);
     return employee.shifts.reduce((total, shift) => total + shift.hours,0);
 }
+//This is to test the function
 console.log(`The total hours for Doc: ${calculateTotalHours("Doc")} `);
 
 // Task 5 Create a Function to List Employees with Free Days
 function listAvalibleEmployees(day) {
-let avalibleEmployees= employees.filter(emp=> {
-    return !emp.shifts.some(shift => shift.day === day);
+let avalibleEmployees= employees.filter(em=> {
+    return !em.shifts.some(shift => shift.day === day);
 })
-if (avalibleEmployees > 0) {{
-console.log(`Employees avalible on ${day}: ${employees.name}`)
-
+if (avalibleEmployees.length > 0) {{
+console.log(`Employees avalible on ${day}: ${avalibleEmployees.map(em => em.name)}`)
+}} else {{
+    console.log(`No employees avalible on ${day}`)
 }}
 };
+// This is to test the function
 listAvalibleEmployees("Tuesday");
