@@ -19,18 +19,37 @@ employees.forEach(displayEmployeeShifts);
 // Task 3 Create a Function to Assign a New Shift
 function assignShift(employeeName, day, hours) {
     let employee = employees.find(em => em.name === employeeName);
-    if (!employee) {{
+    if (!employee) {
         console.log(`Error: ${employeeName} not found`)
         return;
-    }}
-    let alreadyHasShift= employees.shifts.find(shift => shift.day === day);
-    if (alreadyHasShift) {{
+    }
+    let alreadyHasShift= employee.shifts.find(shift => shift.day === day);
+    if (alreadyHasShift) {
         console.log(`Error: ${employeeName} already has a shift on ${day}`)
         return;
-    }}
-    employee.shifts.push({day, hours}); 
+    }
+    // This is to add an employee and new shift if needed
+    employee.shifts.push({day, hours});  
     console.log(`Shift has been assigned to ${employeeName} on ${day} for ${hours} hours`)
 }
+// This is to test the function 
+assignShift("Doc", "Monday", 8);
 
+// Task 4 Create a Function to Calculate Total Hours Worked
+function calculateTotalHours(employeeName){
+    let employee = employees.find(em => em.name === employeeName);
+    return employee.shifts.reduce((total, shift) => total + shift.hours,0);
+}
+console.log(`The total hours for Doc: ${calculateTotalHours("Doc")} `);
 
+// Task 5 Create a Function to List Employees with Free Days
+function listAvalibleEmployees(day) {
+let avalibleEmployees= employees.filter(emp=> {
+    return !emp.shifts.some(shift => shift.day === day);
+})
+if (avalibleEmployees > 0) {{
+console.log(`Employees avalible on ${day}: ${employees.name}`)
 
+}}
+};
+listAvalibleEmployees("Tuesday");
